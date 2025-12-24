@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+    <div class="p-5 mb-4 mt-4 bg-light rounded-3 border">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Bienvenue dans le catalogue des cours</h1>
+            <p class="col-md-8 fs-4">
+                Explorez nos formations en ligne, conçues par des experts pour vous aider à progresser.
+            </p>
+            <a href="{{ path('app_catalog_all') }}" class="btn btn-primary btn-lg">Voir tous les cours</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-9">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">{{ course.name | upper }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        {{ course.category.name }} — par {{ course.author.name }}
+                    </h6>
+                    <p class="card-text"><strong>Prix :</strong>
+                        {% if course.price > 0 %}
+                            {{ course.price | number_format(2,',', ' ') }} DH
+                        {% else %}
+                            Gratuit
+                        {% endif %}
+                    </p>
+                    <p class="card-text"><strong>Synopsis :</strong> {{ course.synopsis }}</p>
+                    <hr>
+                    <p class="card-text">{{ course.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+          {{ render(controller('App\\Controller\\CatalogController::similarCourses')) }}
+        </div>
+    </div>
+
+{% endblock content %}
