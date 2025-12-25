@@ -1,0 +1,13 @@
+    {{ form_start(form, {action: url('app_subscribe') }) }}
+    <h5>Subscribe to our newsletter</h5>
+    <p>Monthly digest of what's new and exciting from us.</p>
+    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+        {{ form_label(form.email, 'Email address', {label_attr: {class: 'visually-hidden'}}) }}
+        {{ form_widget(
+            form.email,
+            {attr: {class: 'form-control', placeholder: 'Email address'}}
+        ) }}
+        <button class="btn btn-primary" type="button">Subscribe</button>
+        {{ form_errors(form) }}
+    </div>
+{{ form_end(form) }}
